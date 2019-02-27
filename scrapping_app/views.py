@@ -14,10 +14,10 @@ import json
 #    return render(request,"index.html",context)
 
 
-class DataCreate(APIView):
+class ApiIndexView(APIView):
 
     def get(self,request,*args, **kwargs):
-        return JsonResponse({'data':"petidi peti!!"})
+        return JsonResponse({'data':"OK"})
 
     def post(self,request,*args, **kwargs):
         return JsonResponse({
