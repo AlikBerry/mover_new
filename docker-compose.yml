@@ -51,6 +51,7 @@ services:
     restart: "always"
     env_file: .env
     environment:
+      - VIRTUAL_HOST=mover.munisisazade.com
       - TIMEOUT=300
       - HTTP_PORT=8030
       - STATS_PORT=8031
