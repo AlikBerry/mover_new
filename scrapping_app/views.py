@@ -5,19 +5,30 @@ from rest_framework import status
 from .models import *
 from .serializers import *
 import json
-
 # Create your views here.
-class ApiIndexView(APIView):
 
-    def get(self,requests,*args, **kwargs):
-        return JsonResponse({'data':"OK"})
+#def scrapping(request):
+#    context = {}
+#    context['Products'] = SelectedProducts.objects.all()  
+#    
+#    return render(request,"index.html",context)
 
-    def post(self,requests,*args, **kwargs):
-        serializer = DataInfo(data=requests.data)
-        if serializer.is_valid():
-            price = Data(
-                price = serializer.data['price']
-            )
-            price.save()
-            return JsonResponse({'data':serializer.data})
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DataCreate(APIView):
+
+    def get(self,request,*args, **kwargs):
+        return JsonResponse({'data':"petidi peti!!"})
+
+    def post(self,request,*args, **kwargs):
+        return JsonResponse({
+            "data": request.data,
+            "ishledi":"broo"
+        })
+        # serializer = DataInfo(data=requests.data)
+        # if serializer.is_valid():
+        #     price = Data(
+        #         price = serializer.data['price']
+        #     )
+        #     price.save()
+        #     return JsonResponse({'data':serializer.data})
+        # return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
