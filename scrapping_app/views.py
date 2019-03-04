@@ -5,6 +5,7 @@ from rest_framework import status
 from .models import *
 from .serializers import *
 import json
+import re
 # Create your views here.
 
 #def scrapping(request):
@@ -17,12 +18,20 @@ import json
 class ApiIndexView(APIView):
 
     def get(self,request,*args, **kwargs):
-        return JsonResponse({'data':"OK"})
+        return JsonResponse({'status':"OK"})
 
-    def post(self,request,*args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        for x,y in request.data.items():
+            print(x, y)
+            clean = re.compile('>.*?<')
+            text = re.sub(clean,'><',y)
+            print(text)
+            
         return JsonResponse({
-            "data": request.data,
-            "ishledi":"broo"
+            "status": "OK!",
+            "ad": text,
+            "qiymet": text,
+            "razmer": text
         })
         # serializer = DataInfo(data=requests.data)
         # if serializer.is_valid():
