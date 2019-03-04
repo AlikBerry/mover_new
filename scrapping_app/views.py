@@ -6,13 +6,7 @@ from .models import *
 from .serializers import *
 import json
 import re
-# Create your views here.
 
-#def scrapping(request):
-#    context = {}
-#    context['Products'] = SelectedProducts.objects.all()  
-#    
-#    return render(request,"index.html",context)
 
 
 class ApiIndexView(APIView):
