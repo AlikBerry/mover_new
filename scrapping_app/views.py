@@ -15,23 +15,29 @@ class ApiIndexView(APIView):
         return JsonResponse({'status':"OK"})
 
     def post(self, request, *args, **kwargs):
+        lis1 =[]
         for x,y in request.data.items():
-            print(x, y)
             clean = re.compile('>.*?<')
             text = re.sub(clean,'><',y)
-            print(text)
+            lis1.append(text)
+            # val = list(request.data.keys())
             
-        return JsonResponse({
-            "status": "OK!",
-            "ad": text,
-            "qiymet": text,
-            "razmer": text
-        })
-        # serializer = DataInfo(data=requests.data)
-        # if serializer.is_valid():
-        #     price = Data(
-        #         price = serializer.data['price']
-        #     )
-        #     price.save()
-        #     return JsonResponse({'data':serializer.data})
-        # return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                    
+        # return JsonResponse({
+        #     "status": "OK!",
+        #     "name": lis1[0],
+        #     "price": lis1[1],
+        #     "size": lis1[2]
+        
+        # })
+        serializer = DataInfo(data=request.data)
+        if serializer.is_valid():
+            detail = ProductTag(
+                name = serializer.data['name'],
+                price = serializer.data['price'],
+                size = serializer.data['size'],
+                url = serializer.data['url']
+            )
+            detail.save()
+            return JsonResponse({'data':serializer.data})
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

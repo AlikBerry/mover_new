@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Data
+from .models import *
 
 class DataInfo(serializers.ModelSerializer):
     class Meta:
-        model = Data
-        fields = ["price"]
+        model = ProductTag
+        fields = ["name", "price", "size", "url"]
