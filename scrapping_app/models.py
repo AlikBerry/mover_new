@@ -29,19 +29,18 @@ from django.db import models
 #    status = models.ForeignKey("OrderStatus", on_delete=models.CASCADE, 
 #                                null=True,blank=True)
 class ProductTag(models.Model):
-    name = models.CharField(max_length=255)
-    price = models.CharField(max_length=255)
-    size = models.CharField(max_length=255)
-    url = models.URLField(max_length=255)
-    web_page = models.ForeignKey(Urls, on_delete=models.CASCADE)
+    name = models.CharField(max_length=500)
+    price = models.CharField(max_length=500)
+    size = models.CharField(max_length=500)
+    url = models.URLField(max_length=500)
+    
     
 
     def __str__(self):
         return "{} {} {}".format(self.name, self.price, self.size)
 
 
-class Urls(models.Model):
-    web_page = models.CharField(max_length=255, primary_key=True)
+
     
 
     

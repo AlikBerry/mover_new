@@ -3,4 +3,3 @@ from scrapping_app.models import *
 
 
 admin.site.register(ProductTag)
-admin.site.register(Urls)
