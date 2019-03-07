@@ -4,4 +4,4 @@ from .models import *
 class DataInfo(serializers.ModelSerializer):
     class Meta:
         model = ProductTag
-        fields = ["name","price","size"]
+        fields = ["price"]

@@ -6,6 +6,9 @@ from .models import *
 from .serializers import *
 import json
 import re
+from bs4 import BeautifulSoup
+from requests_html import HTMLSession
+from lxml import html 
 
 
 
@@ -29,10 +32,24 @@ class ApiIndexView(APIView):
                 detail = ProductTag(
                     # name = serializer.data['name'],
                     price = serializer.data['price'],
-                    size = serializer.data['size'],
+                    # size = serializer.data['size'],
                     # url = serializer.data['url']
             )
             detail.save()
             
             return JsonResponse({'data': serializer.data})
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def scraper():
+    data = ProductTag.objects.all().last()
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'}
+    session = HTMLSession()
+    page = session.get(data.url,headers=headers)
+    
+
+    return page.html.html
+
+    
+
+# from scrapping_app.views import scraper
+# scraper()
